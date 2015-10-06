@@ -17,7 +17,7 @@ This is a one purpose project but contains several interesting code snippets tha
 * see status/requirements.txt
 
 
-How to start
+## How to start
 1. start tor
 2. copy control_auth_token to this directory (e.g., copy.tor.cookie.bat)
 3. start redis (e.g., start.redis.bat when redis is inside ./redis directory)
@@ -28,10 +28,7 @@ How to start
 8. ...
 9. kill.checkers.bat
 
-
-
-
-Hints for Windows
+## Hints for Windows
 * https://github.com/MSOpenTech/redis/releases
 * use redis desktop monitor for inspection redis db
 * including *.bat files for cleaner picture
