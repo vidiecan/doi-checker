@@ -1,0 +1,93 @@
+# coding=utf-8
+#
+"""
+  Project specific settings.
+"""
+
+import os
+import time
+
+__this_dir = os.path.dirname(os.path.abspath(__file__))
+log_dir = os.path.join(__this_dir, '__logs/')
+if not os.path.exists(log_dir):
+    os.makedirs(log_dir)
+
+settings = {
+
+    "db": {
+        "host": "localhost",
+        "port": 6379,
+    },
+
+    "status": {
+        "min_sleep": 30,
+        "user_id": "@developer.gserviceaccount.com",
+        "user_key": os.path.join(os.path.dirname(__file__), "google.api.drive.p12"),
+        "doc_key": "",
+        "max_repeat": 2,
+    },
+
+    "import": {
+        "min_sleep": 0,
+        "timeout": 30,
+        "max_repeat": 2,
+    },
+
+    "checker": {
+        "min_sleep": 0,
+        "timeout": 30,
+        "die": "die.doi.die",
+        "headers": [
+            (
+                'User-agent',
+                'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36 DOI checker'
+            ),
+        ],
+        "tor": {
+            "enabled": True,
+            "pwd_file": os.path.join(__this_dir, "control_auth_cookie"),
+            "ports": (9150, 9151),
+        },
+        "logger": {
+            "version": 1,
+            "log_dir": log_dir,
+
+            #
+            #
+            "handlers": {
+                "consolethreaded": {
+                    "class": "logging.StreamHandler",
+                    "formatter": "detailed",
+                },
+                "file": {
+                    "class": "logging.FileHandler",
+                    "formatter": "detailed",
+                    "filename": os.path.join(
+                        log_dir, "%s.log" % time.strftime("%Y-%m-%d-%H.%M.%S")),
+                    "level": "INFO",
+                },
+            },
+
+            "loggers": {
+                "": {
+                    "handlers": ["file", "consolethreaded"],
+                    "level": "INFO",
+                },
+                "doi": {
+                    "handlers": ["file", "consolethreaded"],
+                    "level": "INFO",
+                    "qualname": "doi",
+                    "propagate": 0,
+                },
+            },
+
+            "formatters": {
+                "detailed": {
+                    "format": "%(asctime)s,%(msecs)03d %(levelname)-5.4s [%(name)s] %(message)s",
+                    "datefmt": "%Y-%m-%d %H:%M:%S",
+                },
+            },
+        }
+    },
+
+}

@@ -1,0 +1,9 @@
+# coding=utf-8
+import os
+
+settings = {
+    "sa_id": "@developer.gserviceaccount.com",
+    "sa_key": os.path.join( os.path.dirname(__file__), "google.api.drive.p12"),
+    "doc_key": "",
+    "share_user": "",
+}

@@ -1,0 +1,10 @@
+.git-*
+redis
+*.pyc
+*.rdb
+*.p12
+__logs
+.idea
+control_auth_cookie
+*.N.bat
+settings.py
